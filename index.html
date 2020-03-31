@@ -9,24 +9,24 @@
 <body>
     <div class="content">
         <div class="head">
-            <div class="icon"></div>
-            <span class="label">Lead/lag synaptics vs</span>
+            <div class="head__icon"></div>
+            <span class="head__label">Lead/lag synaptics vs</span>
             <select class="select">
                 <option value="">Japan Equities</option>
                 <option value="">Japan Equities</option>
                 <option value="">Japan Equities</option>
                 <option value="">Japan Equities</option>
             </select>
-            <span class="label right">Period of:</span>
+            <span class="head__label head__label--right">Period of:</span>
             <label class="checkbox">
-                <input type="checkbox" id="reverse" checked onchange="isLeadsReverse()">
-                <span class="checkbox-color green"></span>
-                <span class="checkbox-label">Synaptics leads Japan Equities</span>
+                <input type="checkbox" class="input" id="reverse" checked onchange="isLeadsReverse()">
+                <span class="checkbox__color checkbox__color--green"></span>
+                <span class="checkbox__label">Synaptics leads Japan Equities</span>
             </label>
             <label class="checkbox">
-                <input type="checkbox" id="direct" checked checked onchange="isLeadsDirect()">
-                <span class="checkbox-color red"></span>
-                <span class="checkbox-label">Japan Equities leads Synaptics</span>
+                <input type="checkbox" class="input" id="direct" checked checked onchange="isLeadsDirect()">
+                <span class="checkbox__color checkbox__color--red"></span>
+                <span class="checkbox__label">Japan Equities leads Synaptics</span>
             </label>
         </div>
         <div id="container"></div>

@@ -19,7 +19,7 @@ body {
     align-items: center;
 }
 
-.icon {
+.head__icon {
     margin-right: 4px;
     width: 15px;
     height: 15px;
@@ -27,7 +27,7 @@ body {
     z-index: 1;
 }
 
-.icon::before {
+.head__icon::before {
     content: '';
     position: absolute;
     top: 65%;
@@ -39,17 +39,17 @@ body {
     border-left: 2px solid #ffffff;
 }
 
-.label {
+.head__label {
     margin-right: 10px;
     text-transform: uppercase;
 }
 
-.select {
-    width: 168px;
+.head__label--right {
+    margin-left: auto;
 }
 
-.label.right {
-    margin-left: auto;
+.select {
+    width: 168px;
 }
 
 .checkbox {
@@ -59,20 +59,20 @@ body {
     font-size: 12px;
 }
 
-.checkbox input {
+.checkbox .input {
     margin: 0 4px 0 0;
 }
 
-.checkbox-color {
+.checkbox__color {
     margin-right: 4px;
     width: 14px;
     height: 14px;
 }
 
-.checkbox-color.green {
+.checkbox__color--green {
     background-color: #B4E5B4;
 }
 
-.checkbox-color.red {
+.checkbox__color--red {
     background-color: #FEB4B4;
 }
