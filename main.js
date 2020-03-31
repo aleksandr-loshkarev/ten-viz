@@ -1,53 +1,47 @@
 "use strict";
 
-// variables for displaying periods
-let isReverse = true;
-let isDirect = true;
-
 // chart initialization function
 function chart(isReverse, isDirect) {
 
     // chart data processing function
-    function dataArray(jsonObj) {
-        let arrayPoint;
-        let dataJson = JSON.parse(jsonObj);
+    function getDataChart(jsonObj) {
+        const DATA_JSON = JSON.parse(jsonObj);
     
-        return arrayPoint = dataJson.map(item => {
-            let dateNew = new Date(item.date);
-            let formatedDate = Date.UTC(dateNew.getFullYear(), dateNew.getMonth(), dateNew.getDate());
+        return DATA_JSON.map(item => {
+            const DATE_NEW = new Date(item.date);
+            const FORMATED_DATE = Date.UTC(DATE_NEW.getFullYear(), DATE_NEW.getMonth(), DATE_NEW.getDate());
 
-            return [formatedDate, Number(item.value)];
+            return [FORMATED_DATE, Number(item.value)];
         });
     }
 
     // selection function
-    function arrowsDate(jsonObj, isReverse, isDirect) {
-        let arrayArrow;
-        let dataJson = JSON.parse(jsonObj);
+    function getDataSections(jsonObj, isReverse, isDirect) {
+        const DATA_JSON = JSON.parse(jsonObj);
 
-        return arrayArrow = dataJson.filter(item => {
+        return DATA_JSON.filter(item => {
             if(item.type_of_rho == 'reverse') return isReverse;
             if(item.type_of_rho == 'direct') return isDirect;
         }).map(item => {
-            let fromDateNew = new Date(item.min_period_id);
-            let fromDate = Date.UTC(fromDateNew.getFullYear(), fromDateNew.getMonth(), fromDateNew.getDate());
+            const FROM_DATE_NEW = new Date(item.min_period_id);
+            const FROM_DATE = Date.UTC(FROM_DATE_NEW.getFullYear(), FROM_DATE_NEW.getMonth(), FROM_DATE_NEW.getDate());
 
-            let toDateNew = new Date(item.max_period_id);
-            let toDate = Date.UTC(toDateNew.getFullYear(), toDateNew.getMonth(), toDateNew.getDate());
+            const TO_DATE_NEW = new Date(item.max_period_id);
+            const TO_DATE = Date.UTC(TO_DATE_NEW.getFullYear(), TO_DATE_NEW.getMonth(), TO_DATE_NEW.getDate());
 
             if(item.type_of_rho == 'reverse') {
                 return {
                     color: '#B4E5B4',
-                    from: fromDate,
-                    to: toDate
+                    from: FROM_DATE,
+                    to: TO_DATE
                 }
             }
             
             if(item.type_of_rho == 'direct') {
                 return {
                     color: '#FEB4B4',
-                    from: fromDate,
-                    to: toDate
+                    from: FROM_DATE,
+                    to: TO_DATE
                 }
             }
         });
@@ -162,7 +156,7 @@ function chart(isReverse, isDirect) {
             lineWidth: 1,
             tickLength: 0,
             tickPixelInterval: 115,
-            plotBands: arrowsDate(dataArrows, isReverse, isDirect),
+            plotBands: getDataSections(dataArrows, isReverse, isDirect),
             maxPadding: 0,
             minPadding: 0,
             zoomEnabled: true
@@ -196,27 +190,33 @@ function chart(isReverse, isDirect) {
     
         series: [{
             name: 'Synaptics',
-            data: dataArray(firstData),
+            data: getDataChart(firstData),
             yAxis: 1,
             color: '#848383'
         }, {
             name: 'Japan Equities',
-            data: dataArray(secondData),
+            data: getDataChart(secondData),
             color: '#0000FF'
         }]
     
     });
 }
 
-chart(isReverse, isDirect);
+// chart initialization function
+function chartInit() {
+    const IS_REVERSE = document.getElementById('reverse').checked;
+    const IS_DIRECT = document.getElementById('direct').checked;
+    chart(IS_REVERSE, IS_DIRECT);
+}
+
+// check when loading a page for selected checkboxes
+window.onload = chartInit();
 
 // period display functions
 function isLeadsReverse() {
-    isReverse = document.getElementById('reverse').checked;
-    chart(isReverse, isDirect);
+    chartInit();
 }
 
 function isLeadsDirect() {
-    isDirect = document.getElementById('direct').checked;
-    chart(isReverse, isDirect);
+    chartInit();
 }
