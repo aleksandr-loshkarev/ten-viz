@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="content">
+        <div class="head">
+            <div class="icon"></div>
+            <span class="label">Lead/lag synaptics vs</span>
+            <select class="select">
+                <option value="">Japan Equities</option>
+                <option value="">Japan Equities</option>
+                <option value="">Japan Equities</option>
+                <option value="">Japan Equities</option>
+            </select>
+            <span class="label right">Period of:</span>
+            <label class="checkbox">
+                <input type="checkbox" id="reverse" checked onchange="isLeadsReverse()">
+                <span class="checkbox-color green"></span>
+                <span class="checkbox-label">Synaptics leads Japan Equities</span>
+            </label>
+            <label class="checkbox">
+                <input type="checkbox" id="direct" checked checked onchange="isLeadsDirect()">
+                <span class="checkbox-color red"></span>
+                <span class="checkbox-label">Japan Equities leads Synaptics</span>
+            </label>
+        </div>
+        <div id="container"></div>
+    </div>
+    <script src="./data-first.json"></script>
+    <script src="./data-second.json"></script>
+    <script src="./data-arrows.json"></script>
+    <script src="./highcharts-8.0.4/highcharts.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>
